@@ -44,33 +44,19 @@ module Tomato
             
             links = [] 
             clean_links = [] 
+            events_holder = @document.xpath('//*[@id="gallery"]')
 
-            if @pages > 1 
-                @document.each do |doc| 
-                    events_holder = doc.xpath('//*[@id="gallery"]') 
-                    events_holder.each do |event| 
-                        link = event.css("a") 
-                        links << event 
-                    end 
-                    links = links[0] 
-
-                    links.each do |link| 
-                        clean_links << "https://gettyimages.co.uk" + link['href']
-                    end 
-                end 
-            else 
-                events_holder = @document.xpath('//*[@id="gallery"]')
-                events_holder.each do |event| 
-                    link = event.css("a")
+            events_holder.each do |event| 
+                link = event.css("a")
                     links << link 
-                end 
-             
-                links = links[0] 
-
-                links.each do |link| 
-                    clean_links << "https://gettyimages.co.uk" + link['href']
-                end 
             end 
+             
+            links = links[0] 
+
+            links.each do |link| 
+                clean_links << "https://gettyimages.co.uk" + link['href']
+            end 
+            
             return clean_links 
         end
     end 

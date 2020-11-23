@@ -21,4 +21,33 @@ module Tomato
             return body
         end 
     end 
+
+    class GettyImages
+        def initialize(keyword) 
+            if keyword.include?(' ') 
+                keyword = keyword.gsub(' ', '-')
+            end 
+
+            @document = Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}"))
+        end 
+
+        def get_links
+            events_holder = @document.xpath('//*[@id="gallery"]')
+
+            links = [] 
+            events_holder.each do |event| 
+                link = event.css("a")
+                links << link 
+            end 
+            
+            clean_links = [] 
+            links = links[0] 
+
+            links.each do |link| 
+                clean_links << link['href']
+            end 
+
+            return clean_links 
+        end
+    end 
 end

@@ -46,7 +46,7 @@ module Tomato
 
             if @pages > 1 
                 @document.each do |doc| 
-                    events_holder = @document.xpath('//*[@id="gallery"]') 
+                    events_holder = doc.xpath('//*[@id="gallery"]') 
                     events_holder.each do |event| 
                         link = event.css("a") 
                         links << event 

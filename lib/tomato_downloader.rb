@@ -38,13 +38,13 @@ module Tomato
                 links << event 
             end 
 
-            links = links[0] 
+            #links = links[0] 
             
-            links.each do |link| 
-               clean_links << link['href'] 
-            end 
+            #links.each do |link| 
+            #   clean_links << link['href'] 
+            #end 
 
-            return clean_links
+            return links
         end
     end
 end

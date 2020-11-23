@@ -35,27 +35,37 @@ module Tomato
                 counter = 2 
                 while counter <= @pages 
                     @document << Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}?page=#{counter}")) 
+                    counter += 1
                 end 
             end 
         end 
 
         def get_links
-            events_holder = @document.xpath('//*[@id="gallery"]')
-
-            links = [] 
-            events_holder.each do |event| 
-                link = event.css("a")
-                links << link 
-            end 
             
-            clean_links = [] 
-            links = links[0] 
+            links = [] 
 
-            links.each do |link| 
-                clean_links << "https://gettyimages.co.uk" + link['href']
+            if @pages > 1 
+                @document.each do |doc| 
+                    events_holder = @document.xpath('//*[@id="gallery"]') 
+                    events_holder.each do |event| 
+                        link = event.css("a") 
+                        links << event 
+                    end 
+                end 
+            else 
+                events_holder.each do |event| 
+                    link = event.css("a")
+                    links << link 
+                end 
+                
+                clean_links = [] 
+                links = links[0] 
+
+                links.each do |link| 
+                    clean_links << "https://gettyimages.co.uk" + link['href']
+                end 
             end 
-
-            return clean_links 
+            return links 
         end
     end 
 end

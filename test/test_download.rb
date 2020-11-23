@@ -8,4 +8,3 @@ f.readlines.each do |line|
     links << line 
 end 
 
-puts links 

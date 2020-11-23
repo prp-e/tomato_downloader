@@ -31,12 +31,7 @@ module Tomato
             if @pages == 1
                 @document = Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}"))
             else 
-                @document = [] 
-                counter = 2 
-                while counter <= @pages 
-                    @document << Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}?page=#{counter}")) 
-                    counter += 1
-                end 
+                @document = Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}?page=#{@pages}")) 
             end 
         end 
 
@@ -56,7 +51,7 @@ module Tomato
             links.each do |link| 
                 clean_links << "https://gettyimages.co.uk" + link['href']
             end 
-            
+
             return clean_links 
         end
     end 

@@ -52,6 +52,11 @@ module Tomato
                         link = event.css("a") 
                         links << event 
                     end 
+                    links = links[0] 
+
+                    links.each do |link| 
+                        clean_links << "https://gettyimages.co.uk" + link['href']
+                    end 
                 end 
             else 
                 events_holder.each do |event| 
@@ -65,7 +70,7 @@ module Tomato
                     clean_links << "https://gettyimages.co.uk" + link['href']
                 end 
             end 
-            return links 
+            return clean_links 
         end
     end 
 end

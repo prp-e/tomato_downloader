@@ -14,8 +14,7 @@ links.each do |link|
     puts link
     document = Tomato::TomatoDownloader.new(link) 
     #puts document
-    document = document.get_image 
-    puts document  
+    puts document.get_image()
 end  
 
 =begin

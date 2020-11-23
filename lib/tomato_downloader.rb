@@ -57,7 +57,7 @@ module Tomato
             links.each do |link| 
                 clean_links << "https://gettyimages.co.uk" + link['href']
             end 
-
+            clean_links.delete("https://gettyimages.co.uk/")
             return clean_links 
         end
     end 

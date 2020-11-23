@@ -12,8 +12,8 @@ class TomatoDownloader
         body = JSON.parse(request.body) 
         body = body['data']
         body = body[34..-1] 
-        body = Base64.decode(body) 
-        
+        body = Base64.decode64(body) 
+
         return body
     end 
 end

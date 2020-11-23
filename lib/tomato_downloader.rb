@@ -24,11 +24,11 @@ module Tomato
 
     class GettyImages
         def initialize(keyword)
-            @query = "https://www.gettyimages.co.uk/photos/high-heels?family=creative&license=rf&phrase=#{keyword}&sort=best#license"
+            @keyword = keyword
         end
 
         def get_links()
-            web_page = Nokogiri::HTML(open(@query)) 
+            web_page = Nokogiri::HTML(open("https://www.gettyimages.co.uk/photos/high-heels?family=creative&license=rf&phrase=#{@keyword}&sort=best#license")) 
             events_holder = web_page.xpath('//*[@id="gallery"]')
 
             links = [] 
@@ -41,7 +41,7 @@ module Tomato
             links = links[0] 
             
             links.each do |link| 
-                clean_links << link['href'] 
+               clean_links << link['href'] 
             end 
 
             return clean_links

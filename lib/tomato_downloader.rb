@@ -47,6 +47,12 @@ module Tomato
             end 
              
             links = links[0] 
+            
+            links.each do |link_to_be_removed| 
+                if link_to_be_removed == "" || link_to_be_removed == " " 
+                    links = links.delete(link_to_be_removed)
+                end
+            end 
 
             links.each do |link| 
                 clean_links << "https://gettyimages.co.uk" + link['href']

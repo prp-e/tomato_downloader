@@ -59,6 +59,7 @@ module Tomato
                     end 
                 end 
             else 
+                events_holder = @document.xpath('//*[@id="gallery"]')
                 events_holder.each do |event| 
                     link = event.css("a")
                     links << link 

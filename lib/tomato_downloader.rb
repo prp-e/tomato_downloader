@@ -43,6 +43,7 @@ module Tomato
         def get_links
             
             links = [] 
+            clean_links = [] 
 
             if @pages > 1 
                 @document.each do |doc| 
@@ -57,8 +58,7 @@ module Tomato
                     link = event.css("a")
                     links << link 
                 end 
-                
-                clean_links = [] 
+             
                 links = links[0] 
 
                 links.each do |link| 

@@ -44,7 +44,7 @@ module Tomato
             links = links[0] 
 
             links.each do |link| 
-                clean_links << link['href']
+                clean_links << "https://gettyimages.co.uk" + link['href']
             end 
 
             return clean_links 

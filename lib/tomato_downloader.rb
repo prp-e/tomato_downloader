@@ -23,12 +23,20 @@ module Tomato
     end 
 
     class GettyImages
-        def initialize(keyword) 
+        def initialize(keyword, pages=1) 
+            @pages = pages 
             if keyword.include?(' ') 
                 keyword = keyword.gsub(' ', '-')
             end 
-
-            @document = Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}"))
+            if @pages == 1
+                @document = Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}"))
+            else 
+                @document = [] 
+                counter = 2 
+                while counter <= @pages 
+                    @document << Nokogiri::HTML(open("https://gettyimages.co.uk/photos/#{keyword}?page=#{counter}")) 
+                end 
+            end 
         end 
 
         def get_links

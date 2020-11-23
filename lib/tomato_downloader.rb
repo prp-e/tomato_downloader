@@ -1,6 +1,8 @@
 require 'httparty'
 require 'json'
 require 'base64'
+require 'open-uri'
+require 'nokogiri'
 
 module Tomato
 
@@ -21,5 +23,26 @@ module Tomato
     end 
 
     class GettyImages
+        def initialize(keyword)
+            @query = "https://www.gettyimages.co.uk/photos/high-heels?family=creative&license=rf&phrase=#{keyword}&sort=best#license"
+        end
+
+        def get_links()
+            web_page = Nokogiri::HTML(open(@query)) 
+            events_holder = web_page.xpath('//*[@id="gallery"]')
+
+            links = [] 
+            clean_links = []
+            events_holder.each do |event| 
+                link = event.css("a") 
+                links << event 
+            end 
+
+            links.each do |link|
+                clean_links << link["href"] 
+            end 
+
+            return clean_links
+        end
     end
 end

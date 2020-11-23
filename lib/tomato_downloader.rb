@@ -41,6 +41,7 @@ module Tomato
             counter = 0 
             while counter < links.length do 
                 clean_links << links[counter]['href']
+                counter += 1
             end 
 
             return clean_links

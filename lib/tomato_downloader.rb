@@ -28,7 +28,7 @@ module Tomato
         end
 
         def get_links()
-            web_page = Nokogiri::HTML(open("https://www.gettyimages.co.uk/photos/high-heels?family=creative&license=rf&phrase=#{@keyword}&sort=best#license")) 
+            web_page = Nokogiri::HTML(open("https://www.gettyimages.co.uk/photos/#{@keyword}")) 
             events_holder = web_page.xpath('//*[@id="gallery"]')
 
             links = [] 

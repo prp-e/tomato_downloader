@@ -39,10 +39,9 @@ module Tomato
             end 
 
             links = links[0] 
-            counter = 0 
             
-            while counter < links.length do 
-                clean_links << links[counter]['href']
+            links.each do |link| 
+                clean_links << link['href'] 
             end 
 
             return clean_links

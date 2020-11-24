@@ -9,11 +9,11 @@ module Tomato
     class TomatoDownloader
         def initialize(image_link) 
             @image_link = image_link 
+            @request = HTTParty.get("http://tomato.to/toma.php", :query => {'url' => @image_link}, :timeout => 10)
         end 
 
         def get_image()
-            request = HTTParty.get("http://tomato.to/toma.php", :query => {'url' => @image_link}, :timeout => 10)
-            body = JSON.parse(request.body) 
+            body = JSON.parse(@request.body) 
             body = body['data']
             body = body[34..-1] 
             body = Base64.decode64(body) 

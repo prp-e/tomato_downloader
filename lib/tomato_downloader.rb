@@ -7,22 +7,25 @@ require 'nokogiri'
 module Tomato
 
     class TomatoDownloader
+        attr_accessor :code 
         def initialize(image_link) 
             @image_link = image_link 
             @request = HTTParty.get("http://tomato.to/toma.php", :query => {'url' => @image_link}, :timeout => 10)
+            @code = @request.code 
         end 
 
         def get_image()
             body = JSON.parse(@request.body) 
             if body
+                code = @request.code 
                 body = body['data']
                 body = body[34..-1] 
                 body = Base64.decode64(body) 
             else 
                 return "Error in getting the data right"
             end
-
-            return body
+            @request = [body, code]
+            return @request
         end 
     end 
 

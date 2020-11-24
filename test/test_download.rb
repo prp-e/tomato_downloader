@@ -13,10 +13,11 @@ download_links = []
 links[0..25].each do |link| 
     puts link
     document = Tomato::TomatoDownloader.new(link) 
-    download_links << document 
+    p = document.get_image 
+    sleep 30 
+    puts p 
 end  
 
-puts download_links[14].code 
 
 =begin
 f = File.open('download.txt', 'w') 

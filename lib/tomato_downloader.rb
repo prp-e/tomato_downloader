@@ -14,9 +14,13 @@ module Tomato
 
         def get_image()
             body = JSON.parse(@request.body) 
-            body = body['data']
-            body = body[34..-1] 
-            body = Base64.decode64(body) 
+            if body
+                body = body['data']
+                body = body[34..-1] 
+                body = Base64.decode64(body) 
+            else 
+                return "Error in getting the data right"
+            end
 
             return body
         end 

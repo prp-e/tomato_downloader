@@ -10,9 +10,6 @@ end
 
 download_links = [] 
 
-puts links.include?nil 
-
-
 links.each do |link| 
     puts link
     document = Tomato::TomatoDownloader.new(link) 
